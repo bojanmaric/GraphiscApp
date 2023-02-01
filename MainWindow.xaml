@@ -1,0 +1,183 @@
+﻿<Window x:Class="SumAppMaster.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SumAppMaster"
+        mc:Ignorable="d"
+        Title="Potrošnja vazduha pod pritiskom"
+        Height="780"
+        Width="1280"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        ShowInTaskbar="True"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+
+        <Button x:Name="btnUpload"
+                HorizontalAlignment="Left"
+                Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                Margin="21,10,0,0"
+                VerticalAlignment="Top"
+                Background="Green"
+                Height="50"
+                Width="140"
+                Cursor="Hand"
+                BorderBrush="Green"
+                Click="btnUpload_Click"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                materialDesign:ButtonProgressAssist.Value="-1">
+
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Width="25"
+                                         Height="27"
+                                         Kind="Upload" />
+
+                <Label BorderThickness="0"
+                       FontStyle="Normal"
+                       Foreground="White"
+                       Content="Dodaj fajl" />
+            </StackPanel>
+
+
+
+        </Button>
+
+        <Button x:Name="btnDelete"
+                HorizontalAlignment="Left"
+                Margin="173,10,0,0"
+                VerticalAlignment="Top"
+                Height="50"
+                Width="140"
+                Cursor="Hand"
+                Background="Red"
+                BorderBrush="Red"
+                Click="btnDelete_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Width="25"
+                                         Height="27"
+                                         Kind="delete" />
+
+
+
+                <Label BorderThickness="0"
+                       FontStyle="Normal"
+                       Foreground="White"
+                       Content="Izbriši fajl" />
+            </StackPanel>
+
+
+
+        </Button>
+        <TextBox x:Name="txtTime1"
+                 HorizontalAlignment="Left"
+                 Margin="592,65,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 PreviewTextInput="txtTime1_PreviewTextInput"
+                 KeyUp="txtTime1_KeyUp" />
+        <TextBox x:Name="txtTime2"
+                 HorizontalAlignment="Left"
+                 Margin="592,105,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"
+                 PreviewTextInput="txtTime2_PreviewTextInput"
+                 KeyUp="txtTime2_KeyUp" />
+        <Label Content="Izaberi vremenski interval"
+               HorizontalAlignment="Left"
+               Margin="467,31,0,0"
+               VerticalAlignment="Top"
+               FontSize="17"
+               RenderTransformOrigin="0.361,1.253" />
+        <Label Content="s"
+               FontSize="17"
+               HorizontalAlignment="Left"
+               Margin="718,67,0,0"
+               VerticalAlignment="Top" />
+        <Label Content="s"
+               FontSize="17"
+               HorizontalAlignment="Left"
+               Margin="718,106,0,0"
+               VerticalAlignment="Top" />
+        <DataGrid x:Name="dataGridView1"
+                  d:ItemsSource="{d:SampleData ItemCount=15}"
+                  Margin="21,83,996,22"
+                  Background="White"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True"
+                  GridLinesVisibility="All"
+                  ColumnHeaderHeight="{Binding Effect, ElementName=dataGridView1}"
+                  AlternatingRowBackground="#FFF1F1F1"
+                  BorderBrush="{x:Null}"
+                  MouseDoubleClick="dataGridView1_MouseDoubleClick" />
+
+
+        <Label x:Name="lblFileName"
+               Content=""
+               HorizontalAlignment="Left"
+               Margin="15,61,0,0"
+               VerticalAlignment="Top" />
+        <Button x:Name="btnPotvrda"
+                Content="Potvrda"
+                HorizontalAlignment="Left"
+                Margin="466,150,0,0"
+                Height="35"
+                Width="269"
+                VerticalAlignment="Top"
+                Click="btnPotvrda_Click" />
+        <Label x:Name="lblResault"
+               Content=""
+               HorizontalAlignment="Left"
+               Margin="896,81,0,0"
+               FontSize="20"
+               VerticalAlignment="Top" />
+        <Label Content="Ukupna potrošnja vazduha&#xD;&#xA;   u izabranom intervalu"
+               HorizontalAlignment="Left"
+               Margin="833,31,0,0"
+               VerticalAlignment="Top"
+               FontSize="17" />
+        <Label Content="Σ"
+               HorizontalAlignment="Left"
+               Margin="860,81,0,0"
+               VerticalAlignment="Top"
+               Height="34"
+               Width="27"
+               FontSize="20"
+               IsEnabled="False"
+               RenderTransformOrigin="0.599,-0.308" />
+        <Label Content="Početno vreme"
+               HorizontalAlignment="Left"
+               Margin="466,68,0,0"
+               VerticalAlignment="Top"
+               FontSize="17" />
+        <Label Content="Završno vreme"
+               HorizontalAlignment="Left"
+               Margin="466,107,0,0"
+               VerticalAlignment="Top"
+               FontSize="17" />
+       
+        <WpfPlot x:Name="plogGraph"
+                 HorizontalAlignment="Left"
+                 Margin="329,216,0,0"
+                 VerticalAlignment="Top"
+                    
+                 Height="514"
+                 Width="941"
+                 PlottableDragged="plogGraph_PlottableDragged" />
+        <Label Content="l/min"
+               HorizontalAlignment="Left"
+               Margin="967,85,0,0"
+               VerticalAlignment="Top"
+               FontSize="17" />
+    </Grid>
+</Window>
